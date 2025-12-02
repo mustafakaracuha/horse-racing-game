@@ -289,9 +289,11 @@ export default createStore({
         placements,
       });
 
-      if (state.currentRoundIndex < state.schedule.length - 1) {
+      const nextIndex = state.currentRoundIndex + 1;
+
+      if (nextIndex <= state.schedule.length - 1) {
         setTimeout(() => {
-          dispatch("beginRound", state.currentRoundIndex + 1);
+          dispatch("beginRound", nextIndex);
         }, 800);
       } else {
         commit("SET_RACE_STATUS", "completed");
