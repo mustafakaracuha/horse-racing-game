@@ -8,6 +8,7 @@ import ProgramResults from "./components/Program/ProgramResults.vue";
 
 const store = useStore();
 
+// sayfa yüklendiğinde programı oluşturuyoruz
 onMounted(() => {
   if (!store.state.schedule.length) {
     store.dispatch("generateProgram");
@@ -24,9 +25,9 @@ onMounted(() => {
       <div
         class="grid flex-1 gap-3 px-4 py-4 lg:grid-cols-[330px_minmax(0,1fr)_450px] overflow-hidden"
       >
-        <HorseList />
-        <RaceTrack />
-        <ProgramResults />
+        <HorseList /> <!-- atların listesini görüntülemek için -->
+        <RaceTrack /> <!-- yarışmanın mesafelerini görüntülemek için -->
+        <ProgramResults /> <!-- yarışmanın sonuçlarını görüntülemek için -->
       </div>
     </div>
   </div>
