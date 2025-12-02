@@ -82,7 +82,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
               @click="$store.commit('SET_SELECTED_HORSE', horsesByLane[laneNumber])"
             >
               <div
-                class="flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 shadow"
+                class="flex items-center gap-1 cursor-pointer hover:bg-gray-100 rounded-full bg-white/90 px-2.5 py-1 shadow"
               >
                 <span
                   class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-gray-200 text-[9px] font-bold text-white"
