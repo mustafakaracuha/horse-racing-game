@@ -319,10 +319,11 @@ export default createStore({
       const nextIndex = state.currentRoundIndex + 1;
 
       if (nextIndex <= state.schedule.length - 1) {
-        // roundlar arasında beklemeyi minimuma indiriyoruz
+        // roundlar arasında beklemeyi neredeyse sıfıra indiriyoruz
+        // (setTimeout(0) kullanarak call stack'i temizliyoruz)
         setTimeout(() => {
           dispatch("beginRound", nextIndex);
-        }, 150);
+        }, 0);
       } else {
         commit("SET_RACE_STATUS", "completed");
       }
