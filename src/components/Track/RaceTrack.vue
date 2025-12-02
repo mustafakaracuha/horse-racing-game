@@ -35,7 +35,7 @@ const trackLabel = computed(() => {
 // atların ilerlemesini güncelliyoruz
 const computeProgress = (progress = 0) => {
   const clamped = Math.min(Math.max(progress, 0), 85);
-  return `calc(${clamped}% - 48px)`;
+  return `calc(${clamped}% - 50px)`;
 };
 
 // atların ilk harfini alıyoruz
