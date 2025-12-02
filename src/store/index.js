@@ -87,20 +87,12 @@ const pickRandomParticipants = (horses, amount) => {
   return selected;
 };
 
-const prepareTrackHorse = (horse) => {
-  // condition değerini 1–100 aralığında tutuyoruz
-  const normalized = Math.min(Math.max(horse.condition, 1), 100) / 100;
-  // minimum hızı artırmak için taban bir hız ekliyoruz
-  // böylece çok düşük condition'a sahip atlar bile yavas gelmiyor bitişe
-  const speedFactor = 0.5 + normalized * 0.5; // yaklaşık 0.6–1.5 aralığı
-
-  return {
-    ...horse,
-    progress: 0,
-    finishTick: null,
-    speedFactor,
-  };
-};
+const prepareTrackHorse = (horse) => ({
+  ...horse,
+  progress: 0,
+  finishTick: null,
+  speedFactor: 0.4 + horse.condition / 100, // atları biraz yavaşlatıyoruz
+});
 
 export default createStore({
   state: initialState,
