@@ -14,7 +14,7 @@ const HORSE_NAMES = [
   "Annie Easley",
   "Karen Spärck Jones",
   "Hedy Lamarr",
-  "Jean Bartik",
+  "Bold Pilot",
   "Evelyn Boyd Granville",
   "Gladys West",
   "Mary Jackson",

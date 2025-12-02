@@ -82,3 +82,9 @@ npm run dev
 
 - Tarayıcıdan `http://localhost:5173` adresine gidin.
 - `Generate Program` → `Start` adımlarıyla yarışı başlatın.
+
+### Ekran Görüntüsü
+
+Ana ekran görünümü:
+
+![Horse Racing Game Screenshot](src/assets/screenshots/app.png)
