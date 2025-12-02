@@ -27,16 +27,16 @@ const formatRoundLabel = (roundId, distance) => {
 </script>
 
 <template>
-  <div class="flex flex-col rounded-md bg-white shadow-sm">
+  <div
+    class="flex max-h-[calc(100vh-100px)] flex-col rounded-md bg-white shadow-sm overflow-y-auto"
+  >
     <div
       class="grid rounded-t-md border border-gray-300  bg-gray-50 px-5 py-3 text-[13px] font-bold uppercase tracking-wide text-gray-800 md:grid-cols-2"
     >
       <span class="text-center md:text-left">Program</span>
       <span class="text-center md:text-left">Results</span>
     </div>
-    <div
-      class="grid gap-0 md:grid-cols-2"
-    >
+    <div class="grid gap-0 md:grid-cols-2">
       <div class="space-y-0">
         <div
           v-for="round in schedule"
