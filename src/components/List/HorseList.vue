@@ -31,7 +31,7 @@ const horses = computed(() => store.state.horses);
             class="cursor-pointer hover:bg-gray-50"
             @click="$store.commit('SET_SELECTED_HORSE', horse)"
           >
-            <td class="border border-gray-100 px-4 py-2">{{ horse.name }}</td>
+            <td :title="horse.name" class="border border-gray-100 px-4 py-2 truncate max-w-[120px]">{{ horse.name }}</td>
             <td class="border border-gray-100 px-4 py-2 font-semibold">
               {{ horse.condition }}
             </td>
