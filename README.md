@@ -84,6 +84,11 @@ npm run dev
 - Tarayıcıdan `http://localhost:5173` adresine gidin.
 - `Generate Program` → `Start` adımlarıyla yarışı başlatın.
 
+### Canlı Demo
+
+- Uygulamayı canlı olarak buradan deneyebilirsiniz:  
+  [https://horse-racing-game-beryl.vercel.app/](https://horse-racing-game-beryl.vercel.app/)
+
 ### Ekran Görüntüsü
 
 Ana ekran görünümü:
