@@ -110,7 +110,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
         v-else-if="raceStatus === 'completed'"
         class="mt-6 text-center text-sm font-semibold text-green-600"
       >
-        Race sequence completed! Generate again to run another cup.
+      The race is over! Create a new one for another race.
       </div>
     </div>
   </div>
