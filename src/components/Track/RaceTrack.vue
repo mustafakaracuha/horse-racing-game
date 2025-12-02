@@ -79,6 +79,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
               v-if="horsesByLane[laneNumber]"
               class="absolute top-1/2 flex -translate-y-1/2 items-center gap-2 transition-all"
               :style="{ left: computeProgress(horsesByLane[laneNumber].progress) }"
+              @click="$store.commit('SET_SELECTED_HORSE', horsesByLane[laneNumber])"
             >
               <div
                 class="flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 shadow"

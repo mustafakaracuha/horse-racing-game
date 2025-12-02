@@ -5,6 +5,7 @@ import HorseList from "./components/List/HorseList.vue";
 import TopBar from "./components/Bar/TopBar.vue";
 import RaceTrack from "./components/Track/RaceTrack.vue";
 import ProgramResults from "./components/Program/ProgramResults.vue";
+import HorseDetailModal from "./components/Modal/HorseDetailModal.vue";
 
 const store = useStore();
 
@@ -29,6 +30,7 @@ onMounted(() => {
         <RaceTrack /> <!-- yarışmanın mesafelerini görüntülemek için -->
         <ProgramResults /> <!-- yarışmanın sonuçlarını görüntülemek için -->
       </div>
+      <HorseDetailModal /> <!-- at detaylarını görüntülemek için -->
     </div>
   </div>
 </template>

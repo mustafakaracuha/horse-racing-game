@@ -60,6 +60,7 @@ const initialState = () => ({
   raceStatus: "idle", // idle | ready | running | paused | completed
   intervalId: null,
   tickCount: 0,
+  selectedHorse: null,
 });
 
 // atların listesini oluşturuyoruz
@@ -156,6 +157,12 @@ export default createStore({
     },
     SET_TICK_COUNT(state, tick) {
       state.tickCount = tick;
+    },
+    SET_SELECTED_HORSE(state, horse) {
+      state.selectedHorse = horse;
+    },
+    CLEAR_SELECTED_HORSE(state) {
+      state.selectedHorse = null;
     },
   },
   actions: {
