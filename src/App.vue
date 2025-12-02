@@ -18,11 +18,11 @@ onMounted(() => {
 <template>
   <div class="min-h-screen bg-slate-200 px-3 py-6">
     <div
-      class="mx-auto flex w-full max-w-[1500px] flex-col rounded-md bg-gray-100 shadow-md"
+      class="mx-auto flex w-full flex-col rounded-md bg-gray-100 shadow-md"
     >
       <TopBar />
       <div
-        class="grid gap-4 px-4 py-6 lg:grid-cols-[300px_minmax(0,1fr)_320px]"
+        class="grid gap-4 px-4 py-6 lg:grid-cols-[330px_minmax(0,1fr)_450px]"
       >
         <HorseList />
         <RaceTrack />

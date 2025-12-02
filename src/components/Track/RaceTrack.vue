@@ -17,6 +17,7 @@ const horsesByLane = computed(() =>
   }, {}),
 );
 
+
 const trackLabel = computed(() => {
   if (!currentRound.value) return "Waiting for schedule";
   const suffix =

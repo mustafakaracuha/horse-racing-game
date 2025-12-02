@@ -28,7 +28,7 @@ const horses = computed(() => store.state.horses);
             <td class="border border-gray-100 px-4 py-2 font-semibold">
               {{ horse.condition }}
             </td>
-            <td class="border border-gray-100 px-4 py-2">
+            <td class="border border-gray-100 px-4 py-2 flex items-center">
               <span
                 class="mr-2 inline-block h-3 w-3 rounded-full border border-gray-300 align-middle"
                 :style="{ backgroundColor: horse.colorHex }"

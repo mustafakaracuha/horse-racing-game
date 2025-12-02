@@ -35,27 +35,27 @@ const formatRoundLabel = (roundId, distance) => {
       <span class="text-center md:text-left">Results</span>
     </div>
     <div
-      class="grid gap-5 px-5 py-4 md:grid-cols-2"
+      class="grid gap-0 md:grid-cols-2"
     >
-      <div class="space-y-4">
+      <div class="space-y-0">
         <div
           v-for="round in schedule"
           :key="round.id"
-          class="overflow-hidden rounded-md border border-blue-300 bg-white"
+          class="overflow-hidden border border-blue-300 bg-white"
         >
           <div
-            class="rounded-t-md bg-blue-600 px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white"
+            class="bg-blue-600 px-2 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white"
           >
             {{ formatRoundLabel(round.id, round.distance) }}
           </div>
-          <div class="max-h-40 overflow-auto text-[11px]">
+          <div class="overflow-auto text-[11px]">
             <table class="w-full border-collapse">
               <thead class="bg-blue-50 text-blue-900">
-                <tr>
-                  <th class="w-14 border border-blue-100 px-2 py-1 text-left">
+                    <tr>
+                  <th class="w-14 border border-green-100 px-2 py-1 text-left">
                     Position
                   </th>
-                  <th class="border border-blue-100 px-2 py-1 text-left">
+                  <th class="border border-green-100 px-2 py-1 text-left">
                     Name
                   </th>
                 </tr>
@@ -66,12 +66,12 @@ const formatRoundLabel = (roundId, distance) => {
                   :key="horse.id"
                   class="odd:bg-white even:bg-blue-50/40"
                 >
-                  <td
-                    class="border border-blue-100 px-2 py-1 text-[11px] font-semibold"
+                <td
+                    class="border border-green-100 px-2 py-1 text-[11px] font-semibold"
                   >
                     {{ index + 1 }}
                   </td>
-                  <td class="border border-blue-100 px-2 py-1 text-[11px]">
+                  <td class="border border-green-100 px-2 py-1 text-[11px]">
                     {{ horse.name }}
                   </td>
                 </tr>
@@ -80,18 +80,18 @@ const formatRoundLabel = (roundId, distance) => {
           </div>
         </div>
       </div>
-      <div class="space-y-4">
+      <div class="space-y-0">
         <div
           v-for="round in schedule"
           :key="`result-${round.id}`"
-          class="overflow-hidden rounded-md border border-green-300 bg-white"
+          class="overflow-hidden border border-green-300 bg-white"
         >
           <div
-            class="rounded-t-md bg-green-600 px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white"
+            class="bg-green-600 px-2 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white"
           >
             {{ formatRoundLabel(round.id, round.distance) }}
           </div>
-          <div class="max-h-40 overflow-auto text-[11px]">
+          <div class="overflow-auto text-[11px]">
             <table class="w-full border-collapse">
               <thead class="bg-green-50 text-green-900">
                 <tr>
