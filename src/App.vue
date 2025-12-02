@@ -22,7 +22,7 @@ onMounted(() => {
     >
       <TopBar />
       <div
-        class="grid flex-1 gap-3 px-4 py-4 lg:grid-cols-[330px_minmax(0,1fr)_450px]"
+        class="grid flex-1 gap-3 px-4 py-4 lg:grid-cols-[330px_minmax(0,1fr)_450px] overflow-hidden"
       >
         <HorseList />
         <RaceTrack />
