@@ -70,6 +70,7 @@ Bu proje, **20 atlık bir havuzdan 6 turluk yarış programı üreten**, her tur
   - `HorseList.vue`: 20 atın listesini ve condition/renk bilgilerini gösterir, kendi içinde scroll.
   - `RaceTrack.vue`: Pist, kulvar ve at animasyonları; aktif tur bilgisini gösterir.
   - `ProgramResults.vue`: Sol tarafta program, sağ tarafta sonuç tablolarını tur tur gösterir.
+   - `HorseDetailModal.vue`: Bir ata tıklandığında açılan modal; sadece burada o atın katıldığı turlar, kazandığı yarışlar ve en iyi derecesi gibi detayları gösterir.
 
 ### Çalıştırma
 
