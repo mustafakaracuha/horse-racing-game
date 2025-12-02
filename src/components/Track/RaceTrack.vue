@@ -49,7 +49,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
     </div>
     <div class="relative overflow-hidden px-4 py-6">
       <div
-        class="absolute inset-y-4 right-10 w-1 z-10 rounded-full bg-red-500"
+        class="absolute inset-y-22 top-6 right-8 w-1 z-10 rounded-full bg-red-500"
         aria-hidden="true"
       ></div>
       <div class="space-y-3">
@@ -70,7 +70,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
             ]"
           >
             <div
-              class="absolute inset-y-1/2 left-0 right-0 -translate-y-1/2 border-t border-dashed border-gray-400"
+              class="absolute inset-y-1/2 left-0 right-0 -translate-y-1/2 border-t border-dashed border-gray-600"
             ></div>
             <div
               v-if="horsesByLane[laneNumber]"
