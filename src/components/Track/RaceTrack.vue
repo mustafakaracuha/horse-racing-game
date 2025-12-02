@@ -10,7 +10,7 @@ const currentRound = computed(() => store.getters.currentRound);
 const raceStatus = computed(() => store.state.raceStatus);
 const trackHorses = computed(() => store.state.trackHorses);
 
-// atların lane'larına göre sıralanmasını sağlıyoruz
+// atların kulvarlarda sıralanmasını sağlıyoruz
 const horsesByLane = computed(() =>
   laneNumbers.reduce((map, lane, index) => {
     map[lane] = trackHorses.value[index] || null;
