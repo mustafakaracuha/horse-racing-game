@@ -10,6 +10,7 @@ const currentRound = computed(() => store.getters.currentRound);
 const raceStatus = computed(() => store.state.raceStatus);
 const trackHorses = computed(() => store.state.trackHorses);
 
+// atların lane'larına göre sıralanmasını sağlıyoruz
 const horsesByLane = computed(() =>
   laneNumbers.reduce((map, lane, index) => {
     map[lane] = trackHorses.value[index] || null;
@@ -17,7 +18,7 @@ const horsesByLane = computed(() =>
   }, {}),
 );
 
-
+// track label'ını oluşturuyoruz
 const trackLabel = computed(() => {
   if (!currentRound.value) return "Waiting for schedule";
   const suffix =
@@ -31,13 +32,13 @@ const trackLabel = computed(() => {
   return `${currentRound.value.id}${suffix} Lap • ${currentRound.value.distance}m`;
 });
 
+// atların ilerlemesini güncelliyoruz
 const computeProgress = (progress = 0) => {
-  // Avatarın container sınırına girip "küçülmüş" gibi görünmemesi için
-  // ilerlemeyi biraz daha erken durdurup, soldan daha büyük bir offset veriyoruz.
   const clamped = Math.min(Math.max(progress, 0), 85);
   return `calc(${clamped}% - 48px)`;
 };
 
+// atların ilk harfini alıyoruz
 const getInitial = (value = "") => (value ? value.charAt(0) : "?");
 </script>
 

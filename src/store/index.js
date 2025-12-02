@@ -1,7 +1,9 @@
 import { createStore } from "vuex";
 
+// yarışmanın mesafelerini belirliyoruz
 const ROUND_DISTANCES = [1200, 1400, 1600, 1800, 2000, 2200];
 
+// atların isimlerini belirliyoruz
 const HORSE_NAMES = [
   "Ada Lovelace",
   "Grace Hopper",
@@ -25,6 +27,7 @@ const HORSE_NAMES = [
   "Fei-Fei Li",
 ];
 
+// atların renklerini belirliyoruz
 const HORSE_COLORS = [
   { label: "Crimson", hex: "#dc2626" },
   { label: "Cobalt", hex: "#1d4ed8" },
@@ -59,6 +62,7 @@ const initialState = () => ({
   tickCount: 0,
 });
 
+// atların listesini oluşturuyoruz
 const createHorseRoster = () =>
   HORSE_NAMES.map((name, index) => {
     const color = HORSE_COLORS[index];
@@ -71,6 +75,7 @@ const createHorseRoster = () =>
     };
   });
 
+  // her round için rastgele 10 at seçiyoruz
 const pickRandomParticipants = (horses, amount) => {
   const pool = [...horses];
   const selected = [];
@@ -85,8 +90,7 @@ const prepareTrackHorse = (horse) => ({
   ...horse,
   progress: 0,
   finishTick: null,
-  speedFactor:
-    (horse.condition / 100) * (0.9 + Math.random() * 0.4), // reward healthier horses
+  speedFactor: horse.condition / 100, // atları biraz yavaşlatıyoruz
 });
 
 export default createStore({
@@ -97,6 +101,7 @@ export default createStore({
     },
   },
   mutations: {
+    // state'i sıfırlıyoruz
     RESET_STATE(state) {
       const preservedSchedule = state.schedule;
       const preservedHorses = state.horses;
@@ -110,9 +115,11 @@ export default createStore({
     SET_SCHEDULE(state, schedule) {
       state.schedule = schedule;
     },
+    // race status'u ayarlıyoruz (idle | ready | running | paused | completed)
     SET_RACE_STATUS(state, status) {
       state.raceStatus = status;
     },
+    // current round index'i ayarlıyoruz (0'dan başlayarak)
     SET_CURRENT_ROUND_INDEX(state, index) {
       state.currentRoundIndex = index;
     },
@@ -122,15 +129,18 @@ export default createStore({
     UPDATE_TRACK_HORSES(state, updater) {
       state.trackHorses = updater(state.trackHorses);
     },
+    // interval id'yi ayarlıyoruz
     SET_INTERVAL_ID(state, id) {
       state.intervalId = id;
     },
+    // interval id'yi temizliyoruz
     CLEAR_INTERVAL_ID(state) {
       if (state.intervalId) {
         clearInterval(state.intervalId);
         state.intervalId = null;
       }
     },
+    // sonuçları kaydediyoruz
     PUSH_RESULT(state, payload) {
       const existingIndex = state.results.findIndex(
         (res) => res.roundId === payload.roundId,
@@ -149,8 +159,10 @@ export default createStore({
     },
   },
   actions: {
+    // programı oluşturuyoruz
     generateProgram({ commit }) {
       const horses = createHorseRoster();
+      // her round için rastgele 10 at seçiyoruz
       const schedule = ROUND_DISTANCES.map((distance, index) => ({
         id: index + 1,
         distance,
@@ -168,6 +180,7 @@ export default createStore({
       commit("SET_RACE_STATUS", "ready");
     },
 
+    // yarışmayı başlatıyoruz veya durduruyoruz
     toggleRace({ state, dispatch }) {
       if (!state.schedule.length) {
         dispatch("generateProgram");
@@ -180,13 +193,14 @@ export default createStore({
       }
     },
 
+    // yarışmayı başlatıyoruz
     startRace({ state, commit, dispatch }) {
       if (!state.schedule.length) {
         dispatch("generateProgram");
         return;
       }
       if (state.raceStatus === "completed") {
-        // restart from first round
+        // tekrar başlangıça dön
         commit("SET_CURRENT_ROUND_INDEX", -1);
         commit("RESET_RESULTS");
       }
@@ -197,6 +211,7 @@ export default createStore({
       }
     },
 
+    // roundu başlatıyoruz
     beginRound({ state, commit, dispatch }, index) {
       if (index >= state.schedule.length) {
         commit("SET_RACE_STATUS", "completed");
@@ -213,15 +228,17 @@ export default createStore({
       dispatch("runRoundLoop");
     },
 
+    // roundu güncelliyoruz
     runRoundLoop({ state, commit, dispatch }) {
       commit("CLEAR_INTERVAL_ID");
-
       const intervalId = setInterval(() => {
+        // tick count'u güncelliyoruz (animasyonu güncelliyoruz)
         commit("SET_TICK_COUNT", state.tickCount + 1);
         let finishedCount = 0;
-
+        // atların ilerlemesini güncelliyoruz
         commit("UPDATE_TRACK_HORSES", (horses) =>
           horses.map((horse) => {
+            // eğer atın finish tick'i null değilse, atın bitişine geldiğini belirtiyoruz
             if (horse.finishTick !== null) {
               finishedCount += 1;
               return horse;
@@ -231,6 +248,7 @@ export default createStore({
               100,
               horse.progress + baseIncrement * horse.speedFactor,
             );
+            // eğer atın progress'i 100'e ulaştıysa ve finish tick'i null ise, atın bitişine geldiğini belirtiyoruz
             const finishTick =
               progress >= 100 && horse.finishTick === null
                 ? state.tickCount
@@ -245,7 +263,7 @@ export default createStore({
             };
           }),
         );
-
+        // eğer tüm atlar finish çizgisine geldiyse roundu bitiriyoruz
         if (finishedCount === state.trackHorses.length) {
           dispatch("endCurrentRound");
         }
@@ -268,6 +286,7 @@ export default createStore({
       commit("CLEAR_INTERVAL_ID");
       if (!state.trackHorses.length) return;
 
+      // atların bitiş sırasını belirliyoruz
       const placements = [...state.trackHorses]
         .map((horse) => ({
           id: horse.id,
@@ -283,6 +302,7 @@ export default createStore({
         }));
 
       const round = state.schedule[state.currentRoundIndex];
+      // sonuçları kaydediyoruz
       commit("PUSH_RESULT", {
         roundId: round.id,
         distance: round.distance,

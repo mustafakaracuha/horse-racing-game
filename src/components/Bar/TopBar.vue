@@ -6,14 +6,17 @@ const store = useStore();
 
 const raceStatus = computed(() => store.state.raceStatus);
 
+// programı oluşturuyoruz
 const generateProgram = () => {
   store.dispatch("generateProgram");
 };
 
+// yarışmayı başlatıyoruz veya durduruyoruz
 const toggleRace = () => {
   store.dispatch("toggleRace");
 };
 
+// start button'ının label'ını oluşturuyoruz
 const startButtonLabel = computed(() =>
   raceStatus.value === "running"
     ? "Pause"

@@ -5,6 +5,7 @@ import { useStore } from "vuex";
 const store = useStore();
 
 const schedule = computed(() => store.state.schedule);
+// sonuçların round'a göre sıralanmasını sağlıyoruz
 const resultsByRound = computed(() => {
   const map = {};
   store.state.results.forEach((round) => {
@@ -13,6 +14,7 @@ const resultsByRound = computed(() => {
   return map;
 });
 
+// round label'ını oluşturuyoruz
 const formatRoundLabel = (roundId, distance) => {
   const suffix =
     roundId === 1
