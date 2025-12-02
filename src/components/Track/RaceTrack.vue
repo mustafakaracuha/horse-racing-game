@@ -41,7 +41,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
 
 <template>
   <div class="flex flex-col rounded-t-md border border-gray-200 bg-white shadow-sm">
-    <div class="rounded-t-md bg-slate-800 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white">
+    <div class="rounded-t-md flex items-center justify-between bg-slate-800 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white">
       Race Progress
       <span class="ml-2 text-xs font-normal text-gray-200">
         {{ trackLabel }}
