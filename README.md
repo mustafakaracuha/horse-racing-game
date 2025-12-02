@@ -87,4 +87,4 @@ npm run dev
 
 Ana ekran görünümü:
 
-![Horse Racing Game Screenshot](src/assets/screenshots/app.png)
+![Horse Racing Game Screenshot](https://github.com/mustafakaracuha/horse-racing-game/blob/main/src/assets/screenshots/app.png)
