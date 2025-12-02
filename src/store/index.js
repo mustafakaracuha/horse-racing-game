@@ -92,7 +92,7 @@ const prepareTrackHorse = (horse) => {
   const normalized = Math.min(Math.max(horse.condition, 1), 100) / 100;
   // minimum hızı artırmak için taban bir hız ekliyoruz
   // böylece çok düşük condition'a sahip atlar bile yavas gelmiyor bitişe
-  const speedFactor = 0.6 + normalized * 1; // yaklaşık 0.6–1.5 aralığı
+  const speedFactor = 0.5 + normalized * 0.5; // yaklaşık 0.6–1.5 aralığı
 
   return {
     ...horse,
