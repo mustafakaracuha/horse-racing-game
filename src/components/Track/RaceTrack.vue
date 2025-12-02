@@ -32,8 +32,10 @@ const trackLabel = computed(() => {
 });
 
 const computeProgress = (progress = 0) => {
-  const safeProgress = Math.min(Math.max(progress, 0), 100);
-  return `calc(${safeProgress}% - 32px)`;
+  // Avatarın container sınırına girip "küçülmüş" gibi görünmemesi için
+  // ilerlemeyi biraz daha erken durdurup, soldan daha büyük bir offset veriyoruz.
+  const clamped = Math.min(Math.max(progress, 0), 85);
+  return `calc(${clamped}% - 48px)`;
 };
 
 const getInitial = (value = "") => (value ? value.charAt(0) : "?");
@@ -78,10 +80,10 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
               :style="{ left: computeProgress(horsesByLane[laneNumber].progress) }"
             >
               <div
-                class="flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 shadow"
+                class="flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 shadow"
               >
                 <span
-                  class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-gray-200 text-[10px] font-bold text-white"
+                  class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-gray-200 text-[9px] font-bold text-white"
                   :style="{ backgroundColor: horsesByLane[laneNumber].colorHex }"
                 >
                   {{ getInitial(horsesByLane[laneNumber].name) }}
@@ -89,10 +91,12 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
                 <img
                   :src="horseIcon"
                   alt="horse"
-                  class="h-6 w-6"
+                  class="h-5 w-5"
                   :style="{ filter: `drop-shadow(0 0 4px ${horsesByLane[laneNumber].colorHex})` }"
                 />
-                <span class="text-[11px] font-semibold text-gray-700">
+                <span
+                  class="max-w-[120px] truncate text-[11px] font-semibold text-gray-700"
+                >
                   {{ horsesByLane[laneNumber].name }}
                 </span>
               </div>
