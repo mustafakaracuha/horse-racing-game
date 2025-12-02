@@ -33,13 +33,13 @@ const startButtonLabel = computed(() =>
     <h1 class="text-xl font-bold uppercase tracking-wide">Horse Racing</h1>
     <div class="flex items-center gap-3">
       <button
-        class="rounded-md bg-white px-4 py-2 text-sm font-semibold uppercase tracking-wide text-gray-800 shadow-sm transition hover:bg-gray-100"
+        class="rounded-md cursor-pointer bg-white px-4 py-2 text-sm font-semibold uppercase tracking-wide text-gray-800 shadow-sm transition hover:bg-gray-100"
         @click="generateProgram"
       >
         Generate Program
       </button>
       <button
-        class="rounded-md border border-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-gray-800 transition hover:bg-gray-50"
+        class="rounded-md border cursor-pointer border-white/70 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-gray-800 transition hover:bg-gray-50"
         :class="{
           'bg-white text-gray-800 hover:bg-gray-50': raceStatus !== 'running',
           'bg-[#c05748] cursor-not-allowed opacity-60': raceStatus === 'running',
