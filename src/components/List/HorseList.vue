@@ -7,11 +7,13 @@ const horses = computed(() => store.state.horses);
 </script>
 
 <template>
-  <div class="flex flex-col rounded-md border border-gray-200 bg-white shadow-sm">
+  <div
+    class="flex h-full min-h-0 flex-col rounded-md border border-gray-200 bg-white shadow-sm"
+  >
     <div class="rounded-t-md bg-yellow-300 px-3 py-3 font-semibold">
       Horse List (1 - 20)
     </div>
-    <div class="max-h-[600px] overflow-auto">
+    <div class="flex-1 min-h-0 overflow-y-auto">
       <table class="w-full border-collapse text-xs">
         <thead>
           <tr class="bg-gray-100 text-gray-700">

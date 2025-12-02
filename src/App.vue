@@ -16,13 +16,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-screen bg-slate-200 px-3 py-2">
+  <div class="h-screen px-3 py-4  overflow-hidden bg-slate-200">
     <div
       class="mx-auto flex h-full w-full flex-col rounded-md bg-gray-100 shadow-md"
     >
       <TopBar />
       <div
-        class="grid flex-1 gap-3 px-3 py-3 lg:grid-cols-[330px_minmax(0,1fr)_450px] overflow-hidden"
+        class="grid flex-1 gap-3 px-4 py-4 lg:grid-cols-[330px_minmax(0,1fr)_450px] overflow-hidden"
       >
         <HorseList />
         <RaceTrack />
