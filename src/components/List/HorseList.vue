@@ -8,7 +8,7 @@ const horses = computed(() => store.state.horses);
 
 <template>
   <div
-    class="flex flex-col rounded-md border border-gray-200 bg-white shadow-sm"
+    class="flex flex-col rounded-t-md border border-gray-200 bg-white shadow-sm"
   >
     <div class="rounded-t-md bg-yellow-300 px-3 py-3 font-semibold">
       Horse List (1 - 20)

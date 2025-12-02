@@ -40,7 +40,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
 </script>
 
 <template>
-  <div class="flex flex-col rounded-md border border-gray-200 bg-white shadow-sm">
+  <div class="flex flex-col rounded-t-md border border-gray-200 bg-white shadow-sm">
     <div class="rounded-t-md bg-slate-800 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white">
       Race Progress
       <span class="ml-2 text-xs font-normal text-gray-200">
@@ -49,7 +49,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
     </div>
     <div class="relative overflow-hidden px-4 py-6">
       <div
-        class="absolute inset-y-22 top-6 right-8 w-1 z-10 rounded-full bg-red-500"
+        class="absolute inset-y-4 right-10 w-1 z-10 rounded-full bg-red-500"
         aria-hidden="true"
       ></div>
       <div class="space-y-3">
@@ -70,7 +70,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
             ]"
           >
             <div
-              class="absolute inset-y-1/2 left-0 right-0 -translate-y-1/2 border-t border-dashed border-gray-600"
+              class="absolute inset-y-1/2 left-0 right-0 -translate-y-1/2 border-t border-dashed border-gray-400"
             ></div>
             <div
               v-if="horsesByLane[laneNumber]"
@@ -101,13 +101,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
         </div>
       </div>
       <div
-        v-if="!currentRound"
-        class="mt-10 text-center text-sm text-gray-500"
-      >
-        Click Generate Program to set the race schedule.
-      </div>
-      <div
-        v-else-if="raceStatus === 'completed'"
+        v-if="raceStatus === 'completed'"
         class="mt-6 text-center text-sm font-semibold text-green-600"
       >
       The race is over! Create a new one for another race.

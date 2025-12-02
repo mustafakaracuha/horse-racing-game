@@ -28,7 +28,7 @@ const formatRoundLabel = (roundId, distance) => {
 
 <template>
   <div
-    class="flex max-h-[calc(100vh-100px)] flex-col rounded-md bg-white shadow-sm overflow-y-auto"
+    class="flex max-h-[calc(100vh-100px)] flex-col rounded-t-md bg-white shadow-sm overflow-y-auto"
   >
     <div
       class="grid rounded-t-md border border-gray-300  bg-gray-50 px-5 py-3 text-[13px] font-bold uppercase tracking-wide text-gray-800 md:grid-cols-2"
