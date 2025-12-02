@@ -52,15 +52,15 @@ const HORSE_COLORS = [
 ];
 
 const initialState = () => ({
-  horses: [],
-  schedule: [],
+  horses: [], // atların listesi
+  schedule: [], // yarışma programının listesi
   currentRoundIndex: -1,
-  trackHorses: [],
-  results: [],
-  raceStatus: "idle", // idle | ready | running | paused | completed
-  intervalId: null,
-  tickCount: 0,
-  selectedHorse: null,
+  trackHorses: [], // pistte koşan atların listesi
+  results: [], // her tur için sonuçların listesi
+  raceStatus: "idle", // idle | ready | running | paused | completed (yarışmanın durumu)
+  intervalId: null, // animasyon döngüsünün interval id'si
+  tickCount: 0, // animasyon tiker sayacı; bitiş sıralamasını hesaplamak için kullanılır
+  selectedHorse: null, // seçilen atın detaylarını görüntülemek için kullanılır
 });
 
 // atların listesini oluşturuyoruz
