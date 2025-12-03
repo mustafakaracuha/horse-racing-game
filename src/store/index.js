@@ -54,7 +54,7 @@ const HORSE_COLORS = [
 const initialState = () => ({
   horses: [], // atların listesi
   schedule: [], // yarışma programının listesi
-  currentRoundIndex: -1,
+  currentRoundIndex: -1, // geçerli turun index'i
   trackHorses: [], // pistte koşan atların listesi
   results: [], // her tur için sonuçların listesi
   raceStatus: "idle", // idle | ready | running | paused | completed (yarışmanın durumu)
@@ -76,7 +76,7 @@ const createHorseRoster = () =>
     };
   });
 
-  // her round için rastgele 10 at seçiyoruz
+  // her tur için rastgele 10 at seçiyoruz
 const pickRandomParticipants = (horses, amount) => {
   const pool = [...horses];
   const selected = [];
@@ -120,7 +120,7 @@ export default createStore({
     SET_RACE_STATUS(state, status) {
       state.raceStatus = status;
     },
-    // current round index'i ayarlıyoruz (0'dan başlayarak)
+    // current tur index'i ayarlıyoruz (0'dan başlayarak)
     SET_CURRENT_ROUND_INDEX(state, index) {
       state.currentRoundIndex = index;
     },
@@ -169,7 +169,7 @@ export default createStore({
     // programı oluşturuyoruz
     generateProgram({ commit }) {
       const horses = createHorseRoster();
-      // her round için rastgele 10 at seçiyoruz
+      // her tur için rastgele 10 at seçiyoruz
       const schedule = ROUND_DISTANCES.map((distance, index) => ({
         id: index + 1,
         distance,
@@ -218,7 +218,7 @@ export default createStore({
       }
     },
 
-    // roundu başlatıyoruz
+    // turu başlatıyoruz
     beginRound({ state, commit, dispatch }, index) {
       if (index >= state.schedule.length) {
         commit("SET_RACE_STATUS", "completed");
@@ -235,7 +235,7 @@ export default createStore({
       dispatch("runRoundLoop");
     },
 
-    // roundu güncelliyoruz
+    // turu güncelliyoruz
     runRoundLoop({ state, commit, dispatch }) {
       commit("CLEAR_INTERVAL_ID");
       const intervalId = setInterval(() => {
@@ -270,7 +270,7 @@ export default createStore({
             };
           }),
         );
-        // eğer tüm atlar finish çizgisine geldiyse roundu bitiriyoruz
+        // eğer tüm atlar finish çizgisine geldiyse turu bitiriyoruz
         if (finishedCount === state.trackHorses.length) {
           dispatch("endCurrentRound");
         }

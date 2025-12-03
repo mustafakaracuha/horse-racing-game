@@ -57,7 +57,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
       ></div>
       <div class="space-y-3">
         <div
-          v-for="(laneNumber, laneIndex) in laneNumbers"
+          v-for="laneNumber in laneNumbers"
           :key="laneNumber"
           class="flex items-center gap-3"
         >
@@ -67,10 +67,7 @@ const getInitial = (value = "") => (value ? value.charAt(0) : "?");
             {{ laneNumber }}
           </div>
           <div
-            :class="[
-              'relative flex-1 rounded-md bg-slate-100',
-              laneIndex !== laneNumbers.length - 1 ? 'pb-4' : 'pb-2',
-            ]"
+            class="relative flex-1 rounded-md bg-slate-100 pb-3"
           >
             <div
               class="absolute inset-y-1/2 left-0 right-0 -translate-y-1/2 border-t border-dashed border-gray-400"
