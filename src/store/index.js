@@ -76,20 +76,40 @@ const createHorseRoster = () =>
     };
   });
 
-  // her tur için rastgele 10 at seçiyoruz
+  // her tur için rastgele 10 at seçiyoruz (aynı atın tekrar seçilmesini engelliyoruz)
 const pickRandomParticipants = (horses, amount) => {
-  const pool = [...horses];
-  return Array.from({ length: Math.min(amount, pool.length) }, () => {
+  const pool = [...horses]; // orijinal diziyi kopyalıyoruz
+  const selected = [];
+  
+  // İstenen sayıda veya pool'da kalan at sayısı kadar seçim yapıyoruz
+  const selectCount = Math.min(amount, pool.length);
+  
+  for (let i = 0; i < selectCount; i++) {
+    // Pool'dan rastgele bir index seçiyoruz
     const randomIndex = Math.floor(Math.random() * pool.length);
-    return pool.splice(randomIndex, 1)[0];
-  });
+    // Seçilen atı pool'dan çıkarıp selected dizisine ekliyoruz
+    // splice kullanarak aynı atın tekrar seçilmesini engelliyoruz
+    const selectedHorse = pool.splice(randomIndex, 1)[0];
+    selected.push(selectedHorse);
+  }
+  
+  return selected;
 };
 
-const prepareTrackHorse = (horse) => ({
+// mesafe faktörünü hesaplıyoruz (mesafe arttıkça progress daha yavaş artar)
+const calculateDistanceFactor = (distance) => {
+  // En kısa mesafe 1200m'yi referans alıyoruz
+  // Mesafe arttıkça faktör azalır, böylece finish süreleri uzar
+  const baseDistance = 1200;
+  return baseDistance / distance;
+};
+
+const prepareTrackHorse = (horse, distance) => ({
   ...horse,
   progress: 0,
   finishTick: null,
   speedFactor: 0.4 + horse.condition / 100, // atları biraz yavaşlatıyoruz
+  distanceFactor: calculateDistanceFactor(distance), // mesafe faktörü (mesafe arttıkça azalır)
 });
 
 export default createStore({
