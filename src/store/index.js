@@ -187,14 +187,29 @@ export default createStore({
     // programı oluşturuyoruz
     generateProgram({ commit }) {
       const horses = createHorseRoster();
+      const usedHorseIds = new Set(); // önceki turlarda kullanılan atların ID'lerini takip ediyoruz
+      
       // her tur için rastgele 10 at seçiyoruz
-      const schedule = ROUND_DISTANCES.map((distance, index) => ({
-        id: index + 1,
-        distance,
-        participants: pickRandomParticipants(horses, 10).map((horse) => ({
-          ...horse,
-        })),
-      }));
+      const schedule = ROUND_DISTANCES.map((distance, index) => {
+        // Önceki turlarda kullanılmamış atları tercih ediyoruz
+        const unusedHorses = horses.filter(horse => !usedHorseIds.has(horse.id));
+        const availableHorses = unusedHorses.length >= 10 
+          ? unusedHorses 
+          : horses; // Eğer yeterli kullanılmamış at yoksa, tüm atları kullan
+        
+        const selected = pickRandomParticipants(availableHorses, 10);
+        
+        // Seçilen atların ID'lerini kullanılanlar listesine ekliyoruz
+        selected.forEach(horse => usedHorseIds.add(horse.id));
+        
+        return {
+          id: index + 1,
+          distance,
+          participants: selected.map((horse) => ({
+            ...horse,
+          })),
+        };
+      });
 
       commit("SET_HORSES", horses);
       commit("SET_SCHEDULE", schedule);
@@ -243,7 +258,7 @@ export default createStore({
         return;
       }
       const round = state.schedule[index];
-      const prepared = round.participants.map((horse) => prepareTrackHorse(horse));
+      const prepared = round.participants.map((horse) => prepareTrackHorse(horse, round.distance));
 
       commit("SET_CURRENT_ROUND_INDEX", index);
       commit("SET_TRACK_HORSES", prepared);
@@ -269,9 +284,11 @@ export default createStore({
               return horse;
             }
             const baseIncrement = 1 + Math.random() * 2;
+            // Mesafe faktörünü kullanarak mesafe arttıkça progress daha yavaş artar
+            // Örnek: 1200m için factor=1.0, 2200m için factor≈0.545
             const progress = Math.min(
               100,
-              horse.progress + baseIncrement * horse.speedFactor,
+              horse.progress + baseIncrement * horse.speedFactor * (horse.distanceFactor || 1),
             );
             // eğer atın progress'i 100'e ulaştıysa ve finish tick'i null ise, atın bitişine geldiğini belirtiyoruz
             const finishTick =
