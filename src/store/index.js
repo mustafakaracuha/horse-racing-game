@@ -79,12 +79,10 @@ const createHorseRoster = () =>
   // her tur için rastgele 10 at seçiyoruz
 const pickRandomParticipants = (horses, amount) => {
   const pool = [...horses];
-  const selected = [];
-  while (selected.length < amount && pool.length) {
+  return Array.from({ length: Math.min(amount, pool.length) }, () => {
     const randomIndex = Math.floor(Math.random() * pool.length);
-    selected.push(pool.splice(randomIndex, 1)[0]);
-  }
-  return selected;
+    return pool.splice(randomIndex, 1)[0];
+  });
 };
 
 const prepareTrackHorse = (horse) => ({
